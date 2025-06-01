@@ -32,13 +32,14 @@ jobs:
         run: bun build lambda/lambda_handler.ts --outfile=lambda/lambda_handler.js --target=node
         working-directory: ./cdk
 
-      - name: CDK Bootstrap
-        working-directory: ./cdk
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
-        run: bunx cdk bootstrap
+      #   USE AS NEEDED  #
+      # - name: CDK Bootstrap
+      #   working-directory: ./cdk
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: us-east-1
+      #   run: bunx cdk bootstrap
 
       - name: CDK Deploy
         working-directory: ./cdk
