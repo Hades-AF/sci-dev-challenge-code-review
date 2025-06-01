@@ -1,6 +1,10 @@
-const axios = require('axios');
+export interface HttpClient {
+  get: (url: string) => Promise<{ data: any }>;
+}
 
-export async function handler(client = axios) {
+import axios from 'axios';
+
+export async function handler(client: HttpClient = axios) {
   const url = process.env.MTG_WIZARD_API_URL;
   if (!url) throw new Error('MTG_WIZARD_API_URL Environemnt Variable Missing');
   const response = await client.get(url);

@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate JS Lambda
         working-directory: ./cdk
-        run: bun build lambda/lambda_handler.ts --outfile=lambda/lambda_handler.js --target=node --format=cjs
+        run: bun build lambda/lambda_handler.ts --outfile=lambda/lambda_handler.js --target=node --format=cjs --external:none
 
       #   USE AS NEEDED  #
       # - name: CDK Bootstrap

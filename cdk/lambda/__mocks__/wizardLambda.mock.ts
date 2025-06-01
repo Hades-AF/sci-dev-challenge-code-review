@@ -1,4 +1,6 @@
-export const mockClientWith1ValidWizards = {
+import { HttpClient } from '../lambda_handler';
+
+export const mockClientWith1ValidWizards: HttpClient  = {
     get: async () => ({
         data: {
             cards: [
@@ -8,7 +10,7 @@ export const mockClientWith1ValidWizards = {
     }),
 };
 
-export const mockClientWith3ValidWizards = {
+export const mockClientWith3ValidWizards: HttpClient = {
     get: async () => ({
         data: {
             cards: [
@@ -20,7 +22,7 @@ export const mockClientWith3ValidWizards = {
     }),
 };
 
-export const mockClientWithInvalidWizardPowers = {
+export const mockClientWithInvalidWizardPowers: HttpClient = {
     get: async () => ({
         data: {
             cards: [
@@ -33,6 +35,10 @@ export const mockClientWithInvalidWizardPowers = {
     }),
 };
 
-export const mockClientWithInvalidFormat = {
-    get: async () => ({}),
+export const mockClientWithInvalidFormat: HttpClient = {
+    get: async () => ({
+        data: {
+            cards: []
+        }
+    }),
 };

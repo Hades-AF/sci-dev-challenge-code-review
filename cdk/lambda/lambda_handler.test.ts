@@ -45,5 +45,6 @@ describe('Wizard Lambda', () => {
         const body = JSON.parse(result.body);
 
         expect(result.statusCode).toBe(404);
+
     });
 });
