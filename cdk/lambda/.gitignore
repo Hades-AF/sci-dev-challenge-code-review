@@ -3,7 +3,4 @@
 .vscode/
 
 # Dependencies
-node_modules/
-
-# AWS CDK
-cdk.out/
+node_modules
