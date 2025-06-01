@@ -6,7 +6,6 @@ export function setHttpClient(mockClient) {
   client = mockClient;
 }
 
-
 export async function handler() {
   const url = process.env.MTG_WIZARD_API_URL;
   if (!url) throw new Error('MTG_WIZARD_API_URL Environemnt Variable Missing');
