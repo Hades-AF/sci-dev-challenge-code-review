@@ -29,7 +29,7 @@ jobs:
         run: bun add -g aws-cdk
 
       - name: Generate JS Lambda
-        run: bun build lambda/lambda_handler.ts --outfile=lambda/lambda_handler.js --target=node
+        run: bun build lambda/lambda_handler.ts --outfile=lambda/lambda_handler.js --target=node --format=cjs
         working-directory: ./cdk
 
       #   USE AS NEEDED  #
