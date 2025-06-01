@@ -18,19 +18,23 @@ jobs:
         uses: oven-sh/setup-bun@v1
 
       - name: Install CDK Dependencies
-        run: bun install
         working-directory: ./cdk
+        run: bun install
 
       - name: Install Lambda Dependencies
-        run: bun install
         working-directory: ./cdk/lambda
+        run: bun install
+
+      - name: Run Lambda Tests
+        working-directory: ./cdk/lambda
+        run: bun test
 
       - name: Install CLI Tool
         run: bun add -g aws-cdk
 
       - name: Generate JS Lambda
-        run: bun build lambda/lambda_handler.ts --outfile=lambda/lambda_handler.js --target=node --format=cjs
         working-directory: ./cdk
+        run: bun build lambda/lambda_handler.ts --outfile=lambda/lambda_handler.js --target=node --format=cjs
 
       #   USE AS NEEDED  #
       # - name: CDK Bootstrap
