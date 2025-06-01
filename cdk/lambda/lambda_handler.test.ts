@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { handler } from './lambda_handler';
+import { handler, setHttpClient } from './lambda_handler';
 import * as wizardMocks from './__mocks__/wizardLambda.mock'
 
 describe('Wizard Lambda', () => {
@@ -7,7 +7,9 @@ describe('Wizard Lambda', () => {
     it('returns 200 status code', async () => {
         process.env.MTG_WIZARD_API_URL = 'https://amazon-mock/wizards';
 
-        const result = await handler(wizardMocks.mockClientWith1ValidWizards);
+        setHttpClient(wizardMocks.mockClientWith1ValidWizards)
+
+        const result = await handler();
 
         expect(result.statusCode).toBe(200);
     });
@@ -15,8 +17,9 @@ describe('Wizard Lambda', () => {
     it('returns 3 wizard cards sorted by power desc', async () => {
         process.env.MTG_WIZARD_API_URL = 'https://amazon-mock/wizards';
 
+        setHttpClient(wizardMocks.mockClientWith3ValidWizards)
 
-        const result = await handler(wizardMocks.mockClientWith3ValidWizards);
+        const result = await handler();
         const body = JSON.parse(result.body);
 
         expect(body.length).toBe(3);
@@ -28,7 +31,9 @@ describe('Wizard Lambda', () => {
     it('filters out invalid powers', async () => {
         process.env.MTG_WIZARD_API_URL = 'https://amazon-mock/wizards';
 
-        const result = await handler(wizardMocks.mockClientWithInvalidWizardPowers);
+        setHttpClient(wizardMocks.mockClientWithInvalidWizardPowers)
+
+        const result = await handler();
         const body = JSON.parse(result.body);
 
         expect(result.statusCode).toBe(200);
@@ -40,8 +45,9 @@ describe('Wizard Lambda', () => {
     it('returns 404 status code', async () => {
         process.env.MTG_WIZARD_API_URL = 'https://amazon-mock/wizards';
 
+        setHttpClient(wizardMocks.mockClientWithInvalidFormat)
 
-        const result = await handler(wizardMocks.mockClientWithInvalidFormat);
+        const result = await handler();
         const body = JSON.parse(result.body);
 
         expect(result.statusCode).toBe(404);
